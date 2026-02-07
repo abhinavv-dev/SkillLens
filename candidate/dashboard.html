@@ -21,7 +21,6 @@
   <nav class="navbar">
     <div class="brand">
       <div class="brand-icon">
-        <!-- Simple Chart/Graph Icon -->
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 3v18h18" />
           <path d="M18 17V9" />
@@ -38,6 +37,11 @@
 
       <!-- Profile Dropdown -->
       <div class="profile-container">
+        <!-- Theme Toggle -->
+        <div class="profile-trigger" id="theme-toggle-btn" aria-label="Toggle Dark Mode" style="margin-right: 0;">
+          <span>🌙</span>
+        </div>
+
         <div class="profile-trigger">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -45,12 +49,8 @@
           </svg>
         </div>
         <div class="profile-dropdown">
-          <div class="dropdown-item profile-link">
-            Profile
-          </div>
-          <div class="dropdown-item logout-btn">
-            Logout
-          </div>
+          <div class="dropdown-item profile-link">Profile</div>
+          <div class="dropdown-item logout-btn">Logout</div>
         </div>
       </div>
     </div>
@@ -59,19 +59,16 @@
   <!-- 2️⃣ Main Layout -->
   <main class="main-container">
 
-    <!-- Top Stats Cards -->
     <div class="stats-grid">
       <div class="stat-card blue">
-        <div class="stat-label">Total Test Attempted</div>
+        <div class="stat-label">Total Tests Attempted</div>
         <div class="stat-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
             <circle cx="9" cy="7" r="4" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           </svg>
         </div>
-        <div class="stat-value">3</div>
+        <div class="stat-value" id="stat-attempted">0</div>
       </div>
 
       <div class="stat-card blue">
@@ -79,12 +76,10 @@
         <div class="stat-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10" />
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-            <line x1="12" y1="17" x2="12.01" y2="17" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1" />
           </svg>
         </div>
-        <!-- Note: The reference image has different colors for first two, but both are blueish. I used same 'blue' class. Reference 2nd is lighter. -->
-        <div class="stat-value">2</div>
+        <div class="stat-value" id="stat-pending">0</div>
       </div>
 
       <div class="stat-card green">
@@ -95,7 +90,7 @@
             <polyline points="22 4 12 14.01 9 11.01" />
           </svg>
         </div>
-        <div class="stat-value">3</div>
+        <div class="stat-value" id="stat-selected">0</div>
       </div>
 
       <div class="stat-card red">
@@ -103,127 +98,165 @@
         <div class="stat-icon">
           <div
             style="font-weight:bold; font-size:1.2rem; border:2px solid white; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center;">
-            5</div>
+            !</div>
         </div>
-        <div class="stat-value">5</div>
+        <div class="stat-value" id="stat-rejected">0</div>
       </div>
     </div>
 
     <h2 style="margin-bottom: 1.5rem; font-size:1.5rem;">Welcome Back, Candidate!</h2>
 
-    <!-- Dashboard Split View -->
     <div class="dashboard-grid">
-
-      <!-- Left: Ongoing Assessment -->
       <div class="ongoing-section">
         <h3 class="section-title">Ongoing Assessment</h3>
         <div class="ongoing-card">
           <div class="ongoing-header">
-            <div class="ongoing-title">Front-End Developer Test</div>
+            <div class="ongoing-title">Loading...</div>
             <div class="ongoing-status">In Progress</div>
-          </div>
-          <div class="ongoing-body">
-            <div class="ongoing-time">Time Left: 25:17</div>
-            <button class="btn-resume">Resume Test</button>
           </div>
         </div>
       </div>
 
-      <!-- Right: Recent Results -->
       <div class="recent-section">
         <h3 class="section-title">Recent Results</h3>
         <div class="results-list">
-
-          <!-- Result 1 -->
-          <div class="result-card">
-            <div class="result-info">
-              <h4>Data Analyst Test</h4>
-              <div class="result-meta">
-                <span class="result-status status-passed">Passed</span> - Score: 85%
-              </div>
-            </div>
-            <button class="btn-view green">Selected</button>
-          </div>
-
-          <!-- Result 2 -->
-          <div class="result-card">
-            <div class="result-info">
-              <h4>Java Developer Test</h4>
-              <div class="result-meta">
-                <span class="result-status status-rejected">Rejected</span> - Score: 60%
-              </div>
-            </div>
-            <button class="btn-view red">Rejected</button>
-          </div>
-
-          <!-- Result 3 -->
-          <div class="result-card">
-            <div class="result-info">
-              <h4>Software Tester Test</h4>
-              <div class="result-meta">
-                <span class="result-status status-selected">Selected</span> - Score: 92%
-              </div>
-            </div>
-            <button class="btn-view green">Selected</button>
-          </div>
-
+          <div style="color:var(--text-muted); text-align:center; padding:2rem;">Loading results...</div>
         </div>
       </div>
     </div>
 
-    <!-- Skill Progress Chart -->
-    <h3 class="section-title">Skill Progress Overview</h3>
+    <!-- Test Outcome Distribution Chart -->
+    <h3 class="section-title">Test Outcome Distribution</h3>
     <div class="chart-section">
       <canvas id="skillsChart" height="100"></canvas>
     </div>
 
   </main>
 
-  <!-- Logic Script -->
+  <script src="mock-data.js"></script>
   <script src="candidate.js"></script>
   <script>
-    // Init Chart
-    const ctx = document.getElementById('skillsChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Coding Skills', 'Problem Solving', 'Technical Knowledge'],
-        datasets: [
-          {
-            label: 'You',
-            data: [8, 8, 9],
-            backgroundColor: '#3B82F6',
-            borderRadius: 4
-          },
-          {
-            label: 'Average',
-            data: [6, 6, 6],
-            backgroundColor: '#1E3A8A',
-            borderRadius: 4
-          },
-          {
-            label: 'Top 10%',
-            data: [6, 6, 8], // Matches reference roughly (Yellow/Green)
-            // Reference uses 3 bars per category. I'll just do 3 datasets.
-            backgroundColor: function (context) {
-              // Reference has 3rd bar varying colors: Yellow, Yellow, Green
-              // Simple workaround: Use one color or gradient. Reference shows distinct colors.
-              // Let's just use Green for simplicity to match "Technical" or similar.
-              return '#10B981';
-            },
-            borderRadius: 4
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: 'bottom' }
-        },
-        scales: {
-          y: { beginAtZero: true, max: 10 }
-        }
+    document.addEventListener('DOMContentLoaded', async () => {
+      const stateMan = window.candidateState;
+
+      // 🚀 N8N INTEGRATION: FETCH DATA
+      await stateMan.fetchDashboardData();
+
+      const stats = stateMan.getStats();
+      const legacyStats = stateMan.state.stats;
+
+      // 1. Update Stats
+      document.getElementById('stat-attempted').innerText = stats.attemptedTests || 0;
+      document.getElementById('stat-pending').innerText = legacyStats.pending || 0;
+      document.getElementById('stat-selected').innerText = legacyStats.selected || 0;
+      document.getElementById('stat-rejected').innerText = legacyStats.rejected || 0;
+
+      // 2. Render Ongoing Assessment
+      const ongoingContainer = document.querySelector('.ongoing-section');
+      ongoingContainer.innerHTML = `
+          <div class="ongoing-card" style="display:flex; align-items:center; justify-content:center; height:150px; color:var(--text-muted); flex-direction:column; gap:10px;">
+              <div style="opacity:0.5;">No ongoing assessments.</div>
+              <button class="btn-resume" style="width:auto; padding:0.5rem 1rem;" onclick="window.location.href='tests.html'">Take New Test</button>
+          </div>
+      `;
+
+      // 3. Render Recent Results
+      const resultsContainer = document.querySelector('.results-list');
+      if (stats.testHistory && stats.testHistory.length > 0) {
+        resultsContainer.innerHTML = '';
+        stats.testHistory.slice(-3).reverse().forEach((attempt, i) => {
+          const status = attempt.quizCorrect ? "Passed Quiz" : "Failed Quiz";
+          const color = attempt.quizCorrect ? "green" : "red";
+          resultsContainer.innerHTML += `
+               <div class="result-card">
+                 <div class="result-info">
+                   <h4>Assessment Attempt #${stats.testHistory.length - i}</h4>
+                   <div class="result-meta">
+                     <span class="result-status status-passed">Completed</span> - Codesize: ${attempt.codingLength || 0} chars
+                   </div>
+                 </div>
+                 <button class="btn-view ${color}" disabled>${status}</button>
+               </div>
+             `;
+        });
+      } else {
+        resultsContainer.innerHTML = '<div style="color:var(--text-muted); text-align:center; padding:2rem;">No results yet.</div>';
       }
+
+      // 📊 Chart Logic
+      let candidateChart = null;
+      function renderCandidateChart() {
+        const chartCanvas = document.getElementById('skillsChart');
+        if (!chartCanvas) return;
+        const ctx = chartCanvas.getContext('2d');
+        if (candidateChart) candidateChart.destroy();
+
+        const attempted = parseInt(document.getElementById('stat-attempted').innerText) || 0;
+        const pending = parseInt(document.getElementById('stat-pending').innerText) || 0;
+        const selected = parseInt(document.getElementById('stat-selected').innerText) || 0;
+        const rejected = parseInt(document.getElementById('stat-rejected').innerText) || 0;
+
+        const maxDataValue = Math.max(attempted, pending, selected, rejected);
+        let niceMax = 10;
+        let stepSize = 1;
+
+        if (maxDataValue > 0) {
+          stepSize = Math.max(1, Math.ceil(maxDataValue / 5));
+          niceMax = Math.ceil((maxDataValue * 1.1) / stepSize) * stepSize;
+        }
+
+        const chartColors = { attempted: '#3B82F6', pending: '#EAB308', selected: '#22C55E', rejected: '#EF4444' };
+        const isLight = document.body.classList.contains('light-mode');
+        const textColor = isLight ? '#1F2937' : '#F9FAFB';
+        const borderColor = isLight ? '#1F2937' : '#475569';
+        const gridColor = isLight ? 'rgba(31, 41, 55, 0.08)' : 'rgba(249, 250, 251, 0.1)';
+
+        candidateChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Attempted', 'Pending', 'Selected', 'Rejected'],
+            datasets: [{
+              label: 'Candidates',
+              data: [attempted, pending, selected, rejected],
+              backgroundColor: [chartColors.attempted, chartColors.pending, chartColors.selected, chartColors.rejected],
+              borderRadius: 6,
+              barPercentage: 0.6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: textColor }, grid: { display: false } },
+              y: { beginAtZero: true, max: niceMax, ticks: { color: textColor, stepSize: stepSize }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+
+      const chartSection = document.querySelector('.chart-section');
+      if (chartSection) {
+        chartSection.innerHTML = `
+          <div class="chart-legend-container">
+              <div>
+                  <div class="chart-title">TEST STATUS OVERVIEW</div>
+                  <div class="chart-subtitle">Real-time distribution of your outcomes</div>
+              </div>
+              <div id="customLegend"></div>
+          </div>
+          <div class="chart-wrapper"><canvas id="skillsChart"></canvas></div>
+        `;
+      }
+
+      renderCandidateChart();
+      window.addEventListener('themeChanged', renderCandidateChart);
+
+      const observer = new MutationObserver(renderCandidateChart);
+      ['stat-attempted', 'stat-pending', 'stat-selected', 'stat-rejected'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el, { childList: true, characterData: true, subtree: true });
+      });
     });
   </script>
 </body>

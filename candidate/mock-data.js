@@ -1,0 +1,110 @@
+const AVAILABLE_TESTS = [
+    {
+        id: 101,
+        company: "Google",
+        role: "Full Stack Developer",
+        location: "Remote",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+        duration: 45,
+        questions: 15,
+        difficulty: "Hard",
+        description: "Test your knowledge on React, Node.js, and System Design.",
+        color: "blue"
+    },
+    {
+        id: 102,
+        company: "Amazon",
+        role: "Data Scientist",
+        location: "Seattle, WA",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+        duration: 60,
+        questions: 20,
+        difficulty: "Hard",
+        description: "Evaluate your skills in Python, ML algorithms, and Statistics.",
+        color: "orange"
+    },
+    {
+        id: 103,
+        company: "Infosys",
+        role: "CQA Engineer",
+        location: "Bangalore",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg",
+        duration: 30,
+        questions: 10,
+        difficulty: "Medium",
+        description: "QA fundamentals, Automation testing, and Java.",
+        color: "blue"
+    },
+    {
+        id: 104,
+        company: "Microsoft",
+        role: "Backend Developer",
+        location: "Redmond",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
+        duration: 50,
+        questions: 15,
+        difficulty: "Hard",
+        description: "C#, .NET Core, SQL and Distributed Systems.",
+        color: "green"
+    },
+    {
+        id: 105,
+        company: "Oracle",
+        role: "AI Engineer",
+        location: "Austin, TX",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+        duration: 60,
+        questions: 20,
+        difficulty: "Expert",
+        description: "Deep Learning, NLP, and Cloud Infrastructure.",
+        color: "red"
+    },
+    {
+        id: 106,
+        company: "Accenture",
+        role: "Cyber Security Analyst",
+        location: "Dublin",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
+        duration: 40,
+        questions: 15,
+        difficulty: "Medium",
+        description: "Network security, Threat analysis, and Compliance.",
+        color: "purple"
+    },
+    {
+        id: 107,
+        company: "IBM",
+        role: "Cloud Engineer",
+        location: "Remote",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+        duration: 45,
+        questions: 15,
+        difficulty: "Medium",
+        description: "Cloud architecture, Kubernetes, and DevOps.",
+        color: "blue"
+    },
+    {
+        id: 108,
+        company: "Adobe",
+        role: "Frontend Developer",
+        location: "San Jose",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg",
+        duration: 45,
+        questions: 15,
+        difficulty: "Medium",
+        description: "JavaScript, CSS, React, and UX Design.",
+        color: "red"
+    },
+    {
+        id: 109,
+        company: "NVIDIA",
+        role: "Data Scientist",
+        location: "Santa Clara",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg",
+        duration: 60,
+        questions: 20,
+        difficulty: "Expert",
+        description: "CUDA, Machine Learning, and High Performance Computing.",
+        color: "green"
+    }
+];

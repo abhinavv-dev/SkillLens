@@ -10,6 +10,21 @@
     --danger: #EF4444;
 }
 
+/* Light Mode Override */
+.light-mode {
+    --bg-dark: #F3F4F6;
+    /* Light Background */
+    --bg-card: #FFFFFF;
+    /* White Card */
+    --text-primary: #111827;
+    /* Dark Text */
+    --text-secondary: #6B7280;
+    /* Muted Text */
+    --border: #E5E7EB;
+    /* Light Border */
+    --shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -240,6 +255,9 @@ input:focus {
 .profile-container {
     position: relative;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .profile-trigger {
@@ -301,6 +319,88 @@ input:focus {
     padding-top: 0.75rem;
 }
 
-.dropdown-item.logout:hover {
-    background-color: rgba(239, 68, 68, 0.1);
+
+/* --- MODAL STYLES --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    border: 1px solid var(--border);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.test-section {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+}
+
+.code-snippet {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: #A5B4FC;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.75rem;
+    border-radius: 6px;
+}
+
+/* --- TOAST NOTIFICATIONS --- */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    animation: slideUp 0.3s ease;
+}
+
+.toast-success {
+    background-color: var(--success);
+}
+
+.toast-error {
+    background-color: var(--danger);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

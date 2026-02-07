@@ -1,35 +1,47 @@
 :root {
     /* Brand Colors */
     --brand-dark: #0f172a;
-    /* Slate 900 - Navbar Background */
+    /* Slate 900 */
     --brand-blue: #1e3a8a;
-    /* Dark Blue - Headers */
+    /* Dark Blue */
     --brand-primary: #2563eb;
     /* Primary Action Blue */
 
     /* Status Colors */
     --color-total: #1e3a8a;
-    /* Dark Blue */
     --color-pending: #475569;
-    /* Slate 600 */
     --color-success: #166534;
-    /* Green 800 */
     --color-reject: #991b1b;
-    /* Red 800 */
 
-    /* UI Colors */
-    --bg-body: #f3f4f6;
-    /* Light Grey Background */
-    --bg-card: #ffffff;
-    --text-primary: #111827;
-    --text-secondary: #6b7280;
-    --border-light: #e5e7eb;
+    /* UI Colors (Default: Dark Mode) */
+    --bg-body: #0f172a;
+    /* Dark Background */
+    --bg-card: #1e293b;
+    /* Dark Card Background */
+    --text-primary: #f8fafc;
+    /* Light Text */
+    --text-secondary: #94a3b8;
+    /* Muted Text */
+    --border-light: #334155;
+    /* Dark Border */
 
     /* Spacing & Layout */
     --nav-height: 64px;
     --container-width: 1200px;
     --radius-sm: 6px;
     --radius-md: 8px;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+}
+
+/* Light Mode Override */
+.light-mode {
+    --bg-body: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --border-light: #e5e7eb;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);

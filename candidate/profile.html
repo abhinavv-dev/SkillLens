@@ -15,7 +15,7 @@
 
 <body>
 
-    <!-- Navigation Bar (Identical to Dashboard) -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="brand">
             <div class="brand-icon">
@@ -54,7 +54,6 @@
             style="max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
             <h2 style="margin-bottom: 2rem; font-size: 1.75rem; font-weight: 700; color: #0F172A;">My Profile</h2>
 
-            <!-- 1. Profile Header & Image -->
             <div
                 style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid #E2E8F0;">
                 <div style="position: relative;">
@@ -73,15 +72,13 @@
                 </div>
                 <div>
                     <h3 id="displayHeaderName"
-                        style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700; color: #0F172A;">Candidate
+                        style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700; color: #0F172A;">Loading...
                     </h3>
                     <p style="color: #64748B;">Manage your personal information and profile photo.</p>
                 </div>
             </div>
 
-            <!-- 2. Personal Details Form -->
             <form id="profileForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-
                 <div style="grid-column: 1 / -1;">
                     <label
                         style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Full
@@ -94,8 +91,8 @@
                     <label
                         style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Email
                         Address</label>
-                    <input type="email" id="email" placeholder="name@example.com"
-                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B;">
+                    <input type="email" id="email" placeholder="name@example.com" readonly
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 1rem; color: #64748B; background: #F8FAFC;">
                 </div>
 
                 <div>
@@ -131,13 +128,13 @@
                 <div style="grid-column: 1 / -1;">
                     <label
                         style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Experience
-                        Summary</label>
+                        / Resume Summary</label>
                     <textarea id="experience" rows="4" placeholder="Brief summary of your work experience..."
                         style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B; resize: vertical;"></textarea>
                 </div>
 
                 <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end; margin-top: 1rem;">
-                    <button type="submit"
+                    <button type="submit" id="saveBtn"
                         style="background: #2563EB; color: white; padding: 0.8rem 2rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: background 0.2s;">Save
                         Changes</button>
                 </div>
@@ -145,13 +142,9 @@
         </div>
     </main>
 
-    <!-- Shared Logic -->
     <script src="candidate.js"></script>
-
-    <!-- Profile Specific Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Elements
             const profileForm = document.getElementById('profileForm');
             const uploadBtn = document.getElementById('uploadBtn');
             const imageInput = document.getElementById('imageInput');
@@ -159,75 +152,49 @@
             const displayHeaderName = document.getElementById('displayHeaderName');
             const fields = ['fullName', 'email', 'phone', 'location', 'education', 'skills', 'experience'];
 
-            // 1. Load Data from LocalStorage
-            const loadProfile = () => {
-                const savedData = JSON.parse(localStorage.getItem('candidateProfile')) || {};
-
-                // Text Fields
+            const loadProfile = async () => {
+                const savedData = await window.candidateState.fetchProfile();
+                if (!savedData) return;
                 fields.forEach(field => {
-                    if (savedData[field]) {
-                        document.getElementById(field).value = savedData[field];
-                    }
+                    const el = document.getElementById(field);
+                    if (el && savedData[field]) el.value = savedData[field];
                 });
-
-                // Header Name Update
-                if (savedData.fullName) {
-                    displayHeaderName.textContent = savedData.fullName;
-                }
-
-                // Image
-                if (savedData.profileImage) {
-                    profileImage.src = savedData.profileImage;
-                }
+                if (savedData.fullName) displayHeaderName.textContent = savedData.fullName;
+                if (savedData.profileImage) profileImage.src = savedData.profileImage;
             };
 
             loadProfile();
 
-            // 2. Image Upload Logic
             uploadBtn.addEventListener('click', () => imageInput.click());
-
             imageInput.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function (event) {
-                        const imageUrl = event.target.result;
-                        // Update Preview
-                        profileImage.src = imageUrl;
-
-                        // Save to Storage immediately? Or wait for Save?
-                        // User request: "Preview image immediately"
-                        // User request: "On clicking Save: Data is stored"
-                        // However, images are large, localStorage might choke if we save full base64 without compressing.
-                        // For this prototype, we'll save it on "Save Changes" to keep logic unified, 
-                        // BUT we must persist it in the form data for the submit handler.
-                        // Let's store it in a temp variable or just read from src on save.
-                    };
+                    reader.onload = (ev) => profileImage.src = ev.target.result;
                     reader.readAsDataURL(file);
                 }
             });
 
-            // 3. Save Functionality
-            profileForm.addEventListener('submit', (e) => {
+            profileForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                const saveBtn = document.getElementById('saveBtn');
+                saveBtn.innerText = 'Saving...';
+                saveBtn.disabled = true;
 
-                const profileData = {};
-                fields.forEach(field => {
-                    profileData[field] = document.getElementById(field).value;
-                });
-
-                // Save Image (Base64 from src)
-                // Note: If it's the placeholder, we might not want to save it as "data", but it's fine.
+                const profileData = { email: localStorage.getItem('userEmail') };
+                fields.forEach(f => profileData[f] = document.getElementById(f).value);
                 profileData.profileImage = profileImage.src;
 
-                localStorage.setItem('candidateProfile', JSON.stringify(profileData));
-
-                // Update Header Name immediately
-                if (profileData.fullName) {
+                try {
+                    await window.candidateState.updateProfile(profileData);
                     displayHeaderName.textContent = profileData.fullName;
+                    alert('Profile updated successfully!');
+                } catch (err) {
+                    alert('Error updating profile.');
+                } finally {
+                    saveBtn.innerText = 'Save Changes';
+                    saveBtn.disabled = false;
                 }
-
-                alert('Profile saved successfully!');
             });
         });
     </script>

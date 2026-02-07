@@ -78,20 +78,20 @@
 
             <div class="metrics-grid">
                 <div class="stat-card">
-                    <div class="stat-title">Total Job Posts</div>
-                    <div class="stat-value" style="color: #60A5FA">12</div>
+                    <div class="stat-title">Total Tests Active</div>
+                    <div class="stat-value" id="stat-total-tests" style="color: #60A5FA">0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Total Applicants</div>
-                    <div class="stat-value">148</div>
+                    <div class="stat-title">Total Candidates</div>
+                    <div class="stat-value" id="stat-total-candidates">0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Shortlisted</div>
-                    <div class="stat-value" style="color: #10B981">45</div>
+                    <div class="stat-title">Selected</div>
+                    <div class="stat-value" id="stat-selected" style="color: #10B981">0</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-title">Rejected</div>
-                    <div class="stat-value" style="color: #EF4444">23</div>
+                    <div class="stat-value" id="stat-rejected" style="color: #EF4444">0</div>
                 </div>
             </div>
 
@@ -100,30 +100,6 @@
                 style="background: var(--bg-card); padding: 2rem; border-radius: 12px; height: 300px; border: 1px solid var(--border);">
                 <canvas id="recruiterChart"></canvas>
             </div>
-
-            <script>
-                // Simple chart init directly here for simplicity
-                const ctx = document.getElementById('recruiterChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Frontend', 'Backend', 'Data Science', 'DevOps', 'QA'],
-                        datasets: [{
-                            label: 'Applications Received',
-                            data: [65, 59, 80, 81, 56],
-                            backgroundColor: 'rgba(37, 99, 235, 0.6)',
-                            borderColor: 'rgba(37, 99, 235, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: { y: { beginAtZero: true, grid: { color: '#334155' } }, x: { grid: { display: false } } },
-                        plugins: { legend: { labels: { color: 'white' } } }
-                    }
-                });
-            </script>
         </section>
 
         <!-- Create Job View -->

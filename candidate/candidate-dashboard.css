@@ -11,15 +11,20 @@
     --accent-danger: #EF4444;
     /* Red */
 
-    --bg-body: #F3F4F6;
-    --bg-card: #FFFFFF;
-    --bg-nav: #111827;
+    /* Default: Dark Mode */
+    --bg-body: #0F172A;
+    /* Slate 900 */
+    --bg-card: #1E293B;
+    /* Slate 800 */
+    --bg-nav: #0F172A;
+    /* Slate 900 */
 
-    --text-main: #1F2937;
-    --text-muted: #6B7280;
+    --text-main: #F9FAFB;
+    --text-muted: #9CA3AF;
     --text-light: #F9FAFB;
 
-    --border: #E5E7EB;
+    --border: #374151;
+    /* Dark Border */
 
     /* Stats Colors */
     --stat-blue: #1E3A8A;
@@ -28,9 +33,9 @@
     --stat-red: #DC2626;
 
     /* Shadows & Radius */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
 
     --radius-md: 0.5rem;
     /* 8px */
@@ -38,6 +43,20 @@
     /* 12px */
     --radius-xl: 1rem;
     /* 16px */
+}
+
+/* Light Mode Override */
+.light-mode {
+    --bg-body: #F3F4F6;
+    --bg-card: #FFFFFF;
+    --bg-nav: #111827;
+    /* Navbar stays dark in light mode too usually, or I can switch it. The original was #111827. */
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --border: #E5E7EB;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -116,6 +135,10 @@ body {
     position: relative;
     padding-left: 1rem;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
+    /* Flexbox for Toggle + Profile Side-by-Side */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .profile-trigger {
@@ -138,28 +161,35 @@ body {
 
 .profile-dropdown {
     position: absolute;
-    top: 120%;
+    top: 130%;
+    /* Slight offset for separation */
     right: 0;
-    width: 160px;
-    background: white;
+    width: 180px;
+    /* Slightly wider for cleaner look */
+    background: var(--bg-card);
+    /* Dark Slate */
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-hover);
-    padding: 0.5rem 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    /* Deep shadow */
+    padding: 0.5rem;
     display: none;
     flex-direction: column;
     border: 1px solid var(--border);
-    animation: fadeIn 0.15s ease-out;
+    /* Subtle border */
+    animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Authentic motion */
+    z-index: 100;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-5px);
+        transform: translateY(-8px) scale(0.98);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -168,26 +198,40 @@ body {
 }
 
 .dropdown-item {
-    padding: 0.6rem 1rem;
+    padding: 0.75rem 1rem;
     font-size: 0.875rem;
     color: var(--text-main);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: all 0.2s;
+    border-radius: 6px;
+    /* Inner radius */
+    margin-bottom: 2px;
 }
 
 .dropdown-item:hover {
-    background-color: var(--bg-body);
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Subtle highlight */
+    color: white;
+    transform: translateX(2px);
+    /* Micro-interaction */
 }
 
-.dropdown-item.logout {
+/* Specific styling for Logout to distinguish it */
+.dropdown-item.logout-btn {
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.75rem;
     color: var(--accent-danger);
-    border-top: 1px solid var(--border);
-    margin-top: 0.25rem;
-    padding-top: 0.6rem;
+}
+
+.dropdown-item.logout-btn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    /* Red tint */
+    color: var(--accent-danger);
 }
 
 /* 2️⃣ Layout */
@@ -417,13 +461,73 @@ body {
 }
 
 
-/* 5️⃣ Chart Section */
+/* 5️⃣ Chart Section - Premium Editorial Style */
 .chart-section {
     background: var(--bg-card);
-    padding: 1.5rem;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    padding: 3rem 3.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border);
+    position: relative;
+    height: 520px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+/* Legend Container (Left Side) */
+.chart-legend-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 200px;
+    padding-top: 1rem;
+}
+
+.chart-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.chart-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 2.5rem;
+    max-width: 180px;
+}
+
+.custom-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Chart Canvas Wrapper (Right Side) */
+.chart-wrapper {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 6️⃣ Tests Grid (For Tests Page) */
@@ -503,4 +607,12 @@ body {
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* 🎯 Targeted Fix: Oracle Logo Resizing */
+img[alt="Oracle"] {
+    height: 30px !important;
+    width: auto !important;
+    margin-top: 10px;
+    /* Slight optical adjustment center */
 }

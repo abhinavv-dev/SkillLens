@@ -98,4 +98,52 @@ document.addEventListener('DOMContentLoaded', () => {
     window.applyTest = (company) => {
         alert(`Application started for ${company}!`);
     };
+
+    // === THEME TOGGLE LOGIC ===
+    function initTheme() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') {
+            document.body.classList.add('light-mode');
+            updateToggleIcon('light');
+        } else {
+            document.body.classList.remove('light-mode');
+            updateToggleIcon('dark');
+        }
+    }
+
+    function updateToggleIcon(mode) {
+        const btn = document.getElementById('theme-toggle');
+        if (btn) {
+            // Simple Text/Icon Toggle
+            btn.innerHTML = mode === 'light' ? '☀️' : '🌙';
+            btn.setAttribute('aria-label', `Switch to ${mode === 'light' ? 'Dark' : 'Light'} Mode`);
+        }
+    }
+
+    window.toggleTheme = function () {
+        const isLight = document.body.classList.toggle('light-mode');
+        const newTheme = isLight ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        updateToggleIcon(newTheme);
+    }
+
+    // Inject Toggle Button into Navbar
+    function addThemeToggle() {
+        const navRight = document.querySelector('.nav-right');
+        if (navRight && !document.getElementById('theme-toggle')) {
+            const toggleBtn = document.createElement('button');
+            toggleBtn.id = 'theme-toggle';
+            toggleBtn.className = 'nav-btn';
+            toggleBtn.style.fontSize = '1.2rem';
+            toggleBtn.style.padding = '4px 8px';
+            toggleBtn.onclick = window.toggleTheme;
+
+            // Insert before the first button or append
+            navRight.insertBefore(toggleBtn, navRight.firstChild);
+        }
+    }
+
+    // Initialize Theme
+    addThemeToggle();
+    initTheme();
 });

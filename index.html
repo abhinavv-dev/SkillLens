@@ -216,7 +216,8 @@
     .login-input {
       width: 100%;
       padding: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
+      /* Spacing handled by error container */
       border-radius: 12px;
       border: 1px solid var(--border-color);
       background-color: var(--bg-dark);
@@ -298,6 +299,20 @@
         padding: 2rem 1.5rem;
       }
     }
+
+    /* Error Messages */
+    .error-msg {
+      color: #EF4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
+      /* Maintains vertical rhythm */
+      min-height: 1.25rem;
+      /* Reserves space */
+      visibility: hidden;
+      /* Hides content but keeps space */
+      text-align: left;
+    }
   </style>
 </head>
 
@@ -334,7 +349,9 @@
 
         <div style="width: 100%;">
           <input type="email" id="recruiter-email" placeholder="Enter email" required class="login-input">
+          <div class="error-msg" id="recruiter-email-error"></div>
           <input type="password" id="recruiter-password" placeholder="Enter password" required class="login-input">
+          <div class="error-msg" id="recruiter-password-error"></div>
         </div>
 
         <button class="btn-select" onclick="handleLogin('recruiter')">Continue as Recruiter</button>
@@ -361,7 +378,9 @@
 
         <div style="width: 100%;">
           <input type="email" id="candidate-email" placeholder="Enter email" required class="login-input">
+          <div class="error-msg" id="candidate-email-error"></div>
           <input type="password" id="candidate-password" placeholder="Enter password" required class="login-input">
+          <div class="error-msg" id="candidate-password-error"></div>
         </div>
 
         <button class="btn-select" onclick="handleLogin('candidate')">Continue as Candidate</button>
