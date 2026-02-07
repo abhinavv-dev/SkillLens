@@ -1,9 +1,10 @@
 // Login Logic - Strict Auth Flow
 
 // 1. Clear any existing session on load (Force strict login)
-window.onload = () => {
-    // Optional: Auto-redirect logic commented out for clean start
-};
+// 1. Clear any existing session on load (Force strict login)
+// window.onload = () => {
+//     // Optional: Auto-redirect logic commented out for clean start
+// };
 
 function handleLogin(role) {
     if (!role) return;
