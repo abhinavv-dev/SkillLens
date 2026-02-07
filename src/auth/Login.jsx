@@ -31,7 +31,7 @@ const Login = () => {
                             <span className="text-3xl">🧠</span>
                         </div>
                     </div>
-                    <h1 className="text-4xl font-bold mb-2">TalentAI</h1>
+                    <h1 className="text-4xl font-bold mb-2">SkillLens</h1>
                     <p className="text-gray-400">Intelligent, Fair, and Efficient Hiring Powered by AI</p>
                 </div>
 

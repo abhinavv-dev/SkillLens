@@ -31,7 +31,7 @@ const Login = () => {
             >
                 <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-                        TalentAI
+                        SkillLens
                     </span>
                 </h1>
                 <p className="text-slate-400 text-lg max-w-xl mx-auto">
@@ -107,7 +107,7 @@ const Login = () => {
             </div>
 
             <footer className="absolute bottom-6 text-slate-600 text-sm">
-                © 2026 TalentAI Inc. All rights reserved.
+                © 2026 SkillLens Inc. All rights reserved.
             </footer>
         </div>
     );

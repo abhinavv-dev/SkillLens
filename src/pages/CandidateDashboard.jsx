@@ -18,7 +18,7 @@ const CandidateDashboard = () => {
                     <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center">
                         <span className="font-bold text-white">T</span>
                     </div>
-                    <span className="text-xl font-bold tracking-tight">TalentAI</span>
+                    <span className="text-xl font-bold tracking-tight">SkillLens</span>
                 </div>
 
                 <nav className="flex-1 space-y-2">

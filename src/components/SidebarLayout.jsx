@@ -47,7 +47,7 @@ const SidebarLayout = ({ role }) => {
                             <span className="text-xl">🧠</span>
                         </div>
                         <span className="text-xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                            TalentAI
+                            SkillLens
                         </span>
                     </div>
                     <div className={`inline-block px-2 py-0.5 ${roleBg} ${roleColor} text-xs rounded-full border ${roleBorder} mt-2`}>
