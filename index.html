@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | TalentAI</title>
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Palette - Premium Dark Theme */
+      --bg-dark: #020617;
+      /* Very dark slate/blue */
+      --bg-card: #0F172A;
+      /* Dark slate card */
+      --bg-card-hover: #1E293B;
+      /* Slightly lighter on hover */
+
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+
+      --primary-blue: #3B82F6;
+      --primary-blue-glow: rgba(59, 130, 246, 0.4);
+
+      --primary-green: #10B981;
+      --primary-green-glow: rgba(16, 185, 129, 0.4);
+
+      --border-color: #1E293B;
+      --border-hover: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      /* Subtle background grid or gradient could go here, keeping it clean for now */
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.08), transparent 25%);
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    /* --- Header Section --- */
+    .brand-header {
+      margin-bottom: 3rem;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #60A5FA 0%, #34D399 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .tagline {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    /* --- Cards Layout --- */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    /* --- Card Styles --- */
+    .role-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .role-card:hover {
+      transform: translateY(-4px);
+      background-color: var(--bg-card-hover);
+    }
+
+    /* Role specific hover effects */
+    .role-card.recruiter:hover {
+      border-color: var(--primary-blue);
+      box-shadow: 0 12px 40px -8px var(--primary-blue-glow);
+    }
+
+    .role-card.candidate:hover {
+      border-color: var(--primary-green);
+      box-shadow: 0 12px 40px -8px var(--primary-green-glow);
+    }
+
+    /* Icons */
+    .icon-container {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .role-card:hover .icon-container {
+      transform: scale(1.1);
+    }
+
+    .icon-svg {
+      width: 40px;
+      height: 40px;
+
+    }
+
+    .recruiter .icon-svg {
+      stroke: var(--primary-blue);
+    }
+
+    .candidate .icon-svg {
+      stroke: var(--primary-green);
+    }
+
+    /* Content inside card */
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      color: var(--text-primary);
+    }
+
+    .card-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .features-list li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .features-list li::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .recruiter .features-list li::before {
+      background-color: var(--primary-blue);
+    }
+
+    .candidate .features-list li::before {
+      background-color: var(--primary-green);
+    }
+
+    /* Input Fields */
+    .login-input {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .login-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .recruiter .login-input:focus {
+      border-color: var(--primary-blue);
+    }
+
+    .candidate .login-input:focus {
+      border-color: var(--primary-green);
+    }
+
+    /* Buttons */
+    .btn-select {
+      margin-top: auto;
+      /* Pushes button to bottom */
+      width: 100%;
+      padding: 1rem;
+      border-radius: 12px;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .recruiter .btn-select {
+      background-color: transparent;
+      border: 1px solid var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    .role-card.recruiter:hover .btn-select {
+      background-color: var(--primary-blue);
+      color: white;
+    }
+
+    .candidate .btn-select {
+      background-color: transparent;
+      border: 1px solid var(--primary-green);
+      color: var(--primary-green);
+    }
+
+    .role-card.candidate:hover .btn-select {
+      background-color: var(--primary-green);
+      color: white;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      margin-top: 4rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+      }
+
+      .role-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="main-container">
+    <!-- Header -->
+    <header class="brand-header">
+      <h1 class="logo">TalentAI</h1>
+      <p class="tagline">Intelligent, fair, and efficient hiring powered by AI.</p>
+    </header>
+
+    <h2 class="section-title">Select your role to continue</h2>
+
+    <!-- Cards Container -->
+    <div class="cards-grid">
+      <!-- Recruiter Card -->
+      <div class="role-card recruiter">
+        <div class="icon-container">
+          <!-- Briefcase Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Recruiter</h3>
+        <p class="card-description">Hire smarter with AI-powered insights.</p>
+
+        <ul class="features-list">
+          <li>Automated resume screening</li>
+          <li>Bias-free candidate ranking</li>
+          <li>One-click interview scheduling</li>
+        </ul>
+
+        <div style="width: 100%;">
+          <input type="email" id="recruiter-email" placeholder="Enter email" required class="login-input">
+          <input type="password" id="recruiter-password" placeholder="Enter password" required class="login-input">
+        </div>
+
+        <button class="btn-select" onclick="handleLogin('recruiter')">Continue as Recruiter</button>
+      </div>
+
+      <!-- Candidate Card -->
+      <div class="role-card candidate">
+        <div class="icon-container">
+          <!-- User/Graduation Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <h3 class="card-title">Candidate</h3>
+        <p class="card-description">Land your dream job with fair assessment.</p>
+
+        <ul class="features-list">
+          <li>AI-tailored job matches</li>
+          <li>Skill-based assessments</li>
+          <li>Real-time application status</li>
+        </ul>
+
+        <div style="width: 100%;">
+          <input type="email" id="candidate-email" placeholder="Enter email" required class="login-input">
+          <input type="password" id="candidate-password" placeholder="Enter password" required class="login-input">
+        </div>
+
+        <button class="btn-select" onclick="handleLogin('candidate')">Continue as Candidate</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      &copy; 2026 TalentAI Inc. All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    // Check if already logged in - LOGIC PRESERVED
+    window.onload = function () {
+      const role = localStorage.getItem('userRole');
+      if (role === 'recruiter') window.location.href = './recruiter_dashboard_vanilla/index.html';
+      if (role === 'candidate') window.location.href = './candidate_dashboard_vanilla/index.html';
+    };
+  </script>
+
+  <!-- External Login Logic -->
+  <script src="auth/login.js"></script>
+</body>
+
+</html>

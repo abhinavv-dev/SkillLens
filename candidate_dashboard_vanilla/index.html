@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Inline SVG Icons -->
+    <style>
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+    <!-- Chart.js CDN (optional but improving visuals as per request) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="nav-brand">
+                <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="nav-title">Candidate Dashboard</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-toggle active nav-btn" data-view="dashboard">Dashboard</button>
+            <button class="nav-toggle nav-btn" data-view="tests">Tests</button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-wrapper">
+
+        <!-- === DASHBOARD VIEW === -->
+        <main id="dashboard-view" class="view-container dashboard-layout">
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <!-- Total Test Attempted -->
+                <div class="stat-card blue">
+                    <div class="stat-header">Total Test Attempted</div>
+                    <div class="stat-body">
+                        <div class="stat-icon-circle">
+                            <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enquiry Pending -->
+                <div class="stat-card slate">
+                    <div class="stat-header">Enquiry Pending</div>
+                    <div class="stat-body">
+                        <div class="stat-icon-circle">
+                            <span class="stat-text-icon">?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected -->
+                <div class="stat-card green">
+                    <div class="stat-header">Selected</div>
+                    <div class="stat-body">
+                        <div class="stat-icon-circle">
+                            <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rejected -->
+                <div class="stat-card red">
+                    <div class="stat-header">Rejected</div>
+                    <div class="stat-body">
+                        <div class="stat-icon-circle">
+                            <span class="stat-text-icon">5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Message -->
+            <div class="welcome-banner">
+                <h1>Welcome Back, Candidate!</h1>
+            </div>
+
+            <!-- Split Section: Ongoing & Recent -->
+            <div class="content-grid-split">
+
+                <!-- Left: Ongoing Assessment -->
+                <div class="ongoing-section">
+                    <h2 class="section-title">Ongoing Assessment</h2>
+                    <div class="ongoing-card-box">
+                        <div class="ongoing-header-row">
+                            <h3>Front-End Developer Test</h3>
+                        </div>
+                        <div class="ongoing-status">In Progress</div>
+
+                        <div class="timer-display">Time Left: <span id="timer">25:17</span></div>
+
+                        <button class="action-btn-primary" onclick="resumeTest()">Resume Test</button>
+                    </div>
+                </div>
+
+                <!-- Right: Recent Results -->
+                <div class="recent-section">
+                    <h2 class="section-title">Recent Results</h2>
+                    <div class="recent-list">
+                        <!-- Item 1 -->
+                        <div class="recent-item">
+                            <div class="recent-info">
+                                <h4>Data Analyst Test</h4>
+                                <p>Passed - Score: 85%</p>
+                            </div>
+                            <span class="status-badge green">Selected</span>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="recent-item">
+                            <div class="recent-info">
+                                <h4>Java Developer Test</h4>
+                                <p>Rejected - Score: 60%</p>
+                            </div>
+                            <span class="status-badge red">Rejected</span>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="recent-item">
+                            <div class="recent-info">
+                                <h4>Software Tester Test</h4>
+                                <p>Selected - Score: 92%</p>
+                            </div>
+                            <span class="status-badge green">Selected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="chart-section-wrapper">
+                <h2 class="section-title">Skill Progress Overview</h2>
+                <div class="chart-box">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- === TESTS VIEW (Hidden by default) === -->
+        <main id="tests-view" class="view-container hidden">
+            <header class="view-header">
+                <h1>Available Tests</h1>
+                <p>Browse and apply for new opportunities.</p>
+            </header>
+
+            <div class="tests-grid-container" id="tests-grid">
+                <!-- Javascript will populate this -->
+            </div>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

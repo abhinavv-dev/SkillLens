@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Candidate Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Reuse existing CSS -->
+    <link rel="stylesheet" href="candidate-dashboard.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar (Identical to Dashboard) -->
+    <nav class="navbar">
+        <div class="brand">
+            <div class="brand-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3v18h18" />
+                    <path d="M18 17V9" />
+                    <path d="M13 17V5" />
+                    <path d="M8 17v-3" />
+                </svg>
+            </div>
+            <span>Candidate Dashboard</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-btn">Dashboard</a>
+            <a href="tests.html" class="nav-btn">Tests</a>
+
+            <div class="profile-container">
+                <div class="profile-trigger">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="profile-dropdown">
+                    <div class="dropdown-item profile-link">Profile</div>
+                    <div class="dropdown-item logout-btn">Logout</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="profile-section"
+            style="max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+            <h2 style="margin-bottom: 2rem; font-size: 1.75rem; font-weight: 700; color: #0F172A;">My Profile</h2>
+
+            <!-- 1. Profile Header & Image -->
+            <div
+                style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid #E2E8F0;">
+                <div style="position: relative;">
+                    <img id="profileImage" src="https://via.placeholder.com/150" alt="Profile"
+                        style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #F8FAFC; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <button id="uploadBtn"
+                        style="position: absolute; bottom: 0; right: 0; background: #2563EB; border: none; border-radius: 50%; width: 36px; height: 36px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                            </path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </button>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                </div>
+                <div>
+                    <h3 id="displayHeaderName"
+                        style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700; color: #0F172A;">Candidate
+                    </h3>
+                    <p style="color: #64748B;">Manage your personal information and profile photo.</p>
+                </div>
+            </div>
+
+            <!-- 2. Personal Details Form -->
+            <form id="profileForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+
+                <div style="grid-column: 1 / -1;">
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Full
+                        Name</label>
+                    <input type="text" id="fullName" placeholder="Enter full name"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Email
+                        Address</label>
+                    <input type="email" id="email" placeholder="name@example.com"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Phone
+                        Number</label>
+                    <input type="tel" id="phone" placeholder="+1 234 567 890"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Location</label>
+                    <input type="text" id="location" placeholder="City, Country"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Highest
+                        Education</label>
+                    <input type="text" id="education" placeholder="Degree / University"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B;">
+                </div>
+
+                <div style="grid-column: 1 / -1;">
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Skills</label>
+                    <input type="text" id="skills" placeholder="Java, Python, React, etc. (Comma separated)"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B;">
+                </div>
+
+                <div style="grid-column: 1 / -1;">
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #334155;">Experience
+                        Summary</label>
+                    <textarea id="experience" rows="4" placeholder="Brief summary of your work experience..."
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem; color: #1E293B; resize: vertical;"></textarea>
+                </div>
+
+                <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end; margin-top: 1rem;">
+                    <button type="submit"
+                        style="background: #2563EB; color: white; padding: 0.8rem 2rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: background 0.2s;">Save
+                        Changes</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Shared Logic -->
+    <script src="candidate.js"></script>
+
+    <!-- Profile Specific Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elements
+            const profileForm = document.getElementById('profileForm');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const imageInput = document.getElementById('imageInput');
+            const profileImage = document.getElementById('profileImage');
+            const displayHeaderName = document.getElementById('displayHeaderName');
+            const fields = ['fullName', 'email', 'phone', 'location', 'education', 'skills', 'experience'];
+
+            // 1. Load Data from LocalStorage
+            const loadProfile = () => {
+                const savedData = JSON.parse(localStorage.getItem('candidateProfile')) || {};
+
+                // Text Fields
+                fields.forEach(field => {
+                    if (savedData[field]) {
+                        document.getElementById(field).value = savedData[field];
+                    }
+                });
+
+                // Header Name Update
+                if (savedData.fullName) {
+                    displayHeaderName.textContent = savedData.fullName;
+                }
+
+                // Image
+                if (savedData.profileImage) {
+                    profileImage.src = savedData.profileImage;
+                }
+            };
+
+            loadProfile();
+
+            // 2. Image Upload Logic
+            uploadBtn.addEventListener('click', () => imageInput.click());
+
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const imageUrl = event.target.result;
+                        // Update Preview
+                        profileImage.src = imageUrl;
+
+                        // Save to Storage immediately? Or wait for Save?
+                        // User request: "Preview image immediately"
+                        // User request: "On clicking Save: Data is stored"
+                        // However, images are large, localStorage might choke if we save full base64 without compressing.
+                        // For this prototype, we'll save it on "Save Changes" to keep logic unified, 
+                        // BUT we must persist it in the form data for the submit handler.
+                        // Let's store it in a temp variable or just read from src on save.
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // 3. Save Functionality
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const profileData = {};
+                fields.forEach(field => {
+                    profileData[field] = document.getElementById(field).value;
+                });
+
+                // Save Image (Base64 from src)
+                // Note: If it's the placeholder, we might not want to save it as "data", but it's fine.
+                profileData.profileImage = profileImage.src;
+
+                localStorage.setItem('candidateProfile', JSON.stringify(profileData));
+
+                // Update Header Name immediately
+                if (profileData.fullName) {
+                    displayHeaderName.textContent = profileData.fullName;
+                }
+
+                alert('Profile saved successfully!');
+            });
+        });
+    </script>
+</body>
+
+</html>

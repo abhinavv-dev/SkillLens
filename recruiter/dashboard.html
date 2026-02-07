@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard | TalentAI</title>
+    <!-- Update Path to Styles -->
+    <link rel="stylesheet" href="../styles/recruiter.css">
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <span>💼</span> TalentAI
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-item active" data-view="dashboard">
+                Dashboard
+            </a>
+            <a href="#" class="nav-item" data-view="create-job">
+                Create Job / Test
+            </a>
+            <a href="#" class="nav-item" data-view="manage-tests">
+                Manage Tests
+            </a>
+            <a href="#" class="nav-item" data-view="applications">
+                Applications
+            </a>
+            <a href="#" class="nav-item logout-btn">
+                Logout
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <!-- Dashboard View -->
+        <section id="dashboard" class="view-section active">
+            <header class="header">
+                <div>
+                    <h1>Recruiter Dashboard</h1>
+                    <p style="color: var(--text-secondary)">Overview of your hiring pipeline</p>
+                </div>
+
+                <!-- Profile Menu -->
+                <div class="profile-container">
+                    <div class="profile-trigger">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="color: white">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <!-- Dropdown -->
+                    <div class="profile-dropdown">
+                        <div class="dropdown-item profile-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Profile
+                        </div>
+                        <div class="dropdown-item logout-btn logout">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            Logout
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="metrics-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Total Job Posts</div>
+                    <div class="stat-value" style="color: #60A5FA">12</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Total Applicants</div>
+                    <div class="stat-value">148</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Shortlisted</div>
+                    <div class="stat-value" style="color: #10B981">45</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Rejected</div>
+                    <div class="stat-value" style="color: #EF4444">23</div>
+                </div>
+            </div>
+
+            <!-- Chart Placeholder (Canvas) -->
+            <div
+                style="background: var(--bg-card); padding: 2rem; border-radius: 12px; height: 300px; border: 1px solid var(--border);">
+                <canvas id="recruiterChart"></canvas>
+            </div>
+
+            <script>
+                // Simple chart init directly here for simplicity
+                const ctx = document.getElementById('recruiterChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Frontend', 'Backend', 'Data Science', 'DevOps', 'QA'],
+                        datasets: [{
+                            label: 'Applications Received',
+                            data: [65, 59, 80, 81, 56],
+                            backgroundColor: 'rgba(37, 99, 235, 0.6)',
+                            borderColor: 'rgba(37, 99, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true, grid: { color: '#334155' } }, x: { grid: { display: false } } },
+                        plugins: { legend: { labels: { color: 'white' } } }
+                    }
+                });
+            </script>
+        </section>
+
+        <!-- Create Job View -->
+        <section id="create-job" class="view-section">
+            <header class="header">
+                <h1>Create New Job / Test</h1>
+            </header>
+            <div style="max-width: 600px; background: var(--bg-card); padding: 2rem; border-radius: 12px;">
+                <form onsubmit="createJob(event)">
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" placeholder="e.g. Senior React Developer" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Role Category</label>
+                        <select>
+                            <option>Frontend Development</option>
+                            <option>Backend Development</option>
+                            <option>Data Science</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Required Skills (comma separated)</label>
+                        <input type="text" placeholder="React, TypeScript, Redux">
+                    </div>
+                    <div class="form-group">
+                        <label>Difficulty Level</label>
+                        <select>
+                            <option>Easy</option>
+                            <option>Medium</option>
+                            <option>Hard</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Create Assessment</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Manage Tests View -->
+        <section id="manage-tests" class="view-section">
+            <header class="header">
+                <h1>Manage Tests</h1>
+            </header>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Test Title</th>
+                            <th>Role</th>
+                            <th>Applicants</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="testsBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Applications View -->
+        <section id="applications" class="view-section">
+            <header class="header">
+                <h1>Candidate Applications</h1>
+            </header>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>Role Applied</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="candidatesBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Update Script Path -->
+    <script src="recruiter.js"></script>
+</body>
+
+</html>

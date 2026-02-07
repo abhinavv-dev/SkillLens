@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Dashboard</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="candidate-dashboard.css">
+  <!-- Chart JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- 1️⃣ Navigation Bar -->
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-icon">
+        <!-- Simple Chart/Graph Icon -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3v18h18" />
+          <path d="M18 17V9" />
+          <path d="M13 17V5" />
+          <path d="M8 17v-3" />
+        </svg>
+      </div>
+      <span>Candidate Dashboard</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="dashboard.html" class="nav-btn active">Dashboard</a>
+      <a href="tests.html" class="nav-btn">Tests</a>
+
+      <!-- Profile Dropdown -->
+      <div class="profile-container">
+        <div class="profile-trigger">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="profile-dropdown">
+          <div class="dropdown-item profile-link">
+            Profile
+          </div>
+          <div class="dropdown-item logout-btn">
+            Logout
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2️⃣ Main Layout -->
+  <main class="main-container">
+
+    <!-- Top Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card blue">
+        <div class="stat-label">Total Test Attempted</div>
+        <div class="stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        </div>
+        <div class="stat-value">3</div>
+      </div>
+
+      <div class="stat-card blue">
+        <div class="stat-label">Enquiry Pending</div>
+        <div class="stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+        </div>
+        <!-- Note: The reference image has different colors for first two, but both are blueish. I used same 'blue' class. Reference 2nd is lighter. -->
+        <div class="stat-value">2</div>
+      </div>
+
+      <div class="stat-card green">
+        <div class="stat-label">Selected</div>
+        <div class="stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+        </div>
+        <div class="stat-value">3</div>
+      </div>
+
+      <div class="stat-card red">
+        <div class="stat-label">Rejected</div>
+        <div class="stat-icon">
+          <div
+            style="font-weight:bold; font-size:1.2rem; border:2px solid white; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center;">
+            5</div>
+        </div>
+        <div class="stat-value">5</div>
+      </div>
+    </div>
+
+    <h2 style="margin-bottom: 1.5rem; font-size:1.5rem;">Welcome Back, Candidate!</h2>
+
+    <!-- Dashboard Split View -->
+    <div class="dashboard-grid">
+
+      <!-- Left: Ongoing Assessment -->
+      <div class="ongoing-section">
+        <h3 class="section-title">Ongoing Assessment</h3>
+        <div class="ongoing-card">
+          <div class="ongoing-header">
+            <div class="ongoing-title">Front-End Developer Test</div>
+            <div class="ongoing-status">In Progress</div>
+          </div>
+          <div class="ongoing-body">
+            <div class="ongoing-time">Time Left: 25:17</div>
+            <button class="btn-resume">Resume Test</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Recent Results -->
+      <div class="recent-section">
+        <h3 class="section-title">Recent Results</h3>
+        <div class="results-list">
+
+          <!-- Result 1 -->
+          <div class="result-card">
+            <div class="result-info">
+              <h4>Data Analyst Test</h4>
+              <div class="result-meta">
+                <span class="result-status status-passed">Passed</span> - Score: 85%
+              </div>
+            </div>
+            <button class="btn-view green">Selected</button>
+          </div>
+
+          <!-- Result 2 -->
+          <div class="result-card">
+            <div class="result-info">
+              <h4>Java Developer Test</h4>
+              <div class="result-meta">
+                <span class="result-status status-rejected">Rejected</span> - Score: 60%
+              </div>
+            </div>
+            <button class="btn-view red">Rejected</button>
+          </div>
+
+          <!-- Result 3 -->
+          <div class="result-card">
+            <div class="result-info">
+              <h4>Software Tester Test</h4>
+              <div class="result-meta">
+                <span class="result-status status-selected">Selected</span> - Score: 92%
+              </div>
+            </div>
+            <button class="btn-view green">Selected</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Skill Progress Chart -->
+    <h3 class="section-title">Skill Progress Overview</h3>
+    <div class="chart-section">
+      <canvas id="skillsChart" height="100"></canvas>
+    </div>
+
+  </main>
+
+  <!-- Logic Script -->
+  <script src="candidate.js"></script>
+  <script>
+    // Init Chart
+    const ctx = document.getElementById('skillsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Coding Skills', 'Problem Solving', 'Technical Knowledge'],
+        datasets: [
+          {
+            label: 'You',
+            data: [8, 8, 9],
+            backgroundColor: '#3B82F6',
+            borderRadius: 4
+          },
+          {
+            label: 'Average',
+            data: [6, 6, 6],
+            backgroundColor: '#1E3A8A',
+            borderRadius: 4
+          },
+          {
+            label: 'Top 10%',
+            data: [6, 6, 8], // Matches reference roughly (Yellow/Green)
+            // Reference uses 3 bars per category. I'll just do 3 datasets.
+            backgroundColor: function (context) {
+              // Reference has 3rd bar varying colors: Yellow, Yellow, Green
+              // Simple workaround: Use one color or gradient. Reference shows distinct colors.
+              // Let's just use Green for simplicity to match "Technical" or similar.
+              return '#10B981';
+            },
+            borderRadius: 4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 10 }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

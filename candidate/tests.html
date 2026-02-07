@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Tests | Candidate</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="candidate-dashboard.css">
+</head>
+
+<body>
+
+    <!-- 1️⃣ Navigation Bar -->
+    <nav class="navbar">
+        <div class="brand">
+            <div class="brand-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3v18h18" />
+                    <path d="M18 17V9" />
+                    <path d="M13 17V5" />
+                    <path d="M8 17v-3" />
+                </svg>
+            </div>
+            <span>Candidate Dashboard</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-btn">Dashboard</a>
+            <a href="tests.html" class="nav-btn active">Tests</a>
+
+            <div class="profile-container">
+                <div class="profile-trigger">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="profile-dropdown">
+                    <div class="dropdown-item profile-link">Profile</div>
+                    <div class="dropdown-item logout-btn">Logout</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2️⃣ Main Layout -->
+    <main class="main-container">
+
+        <div style="margin-bottom: 2rem;">
+            <h2 style="font-size: 1.75rem; font-weight: 700; color: var(--text-main);">Available Tests</h2>
+            <p style="color: var(--text-muted);">Select a test to begin your assessment journey.</p>
+
+            <!-- Search Input -->
+            <div style="margin-top: 1.5rem;">
+                <input type="text" id="testSearch" placeholder="Search tests (company or role)"
+                    style="width: 100%; max-width: 400px; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; color: #0F172A; font-size: 0.95rem; outline: none;">
+            </div>
+        </div>
+
+        <!-- Tests Grid -->
+        <div class="tests-grid">
+
+            <!-- Google -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+                    class="company-logo">
+                <div class="role-title">Full Stack Developer</div>
+                <div class="role-desc">Google • Remote</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <!-- Hidden helper for JS logic compatibility if needed -->
+                <div style="display:none;" class="role-title">Role: Full Stack Developer</div>
+            </div>
+
+            <!-- Amazon -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"
+                    class="company-logo">
+                <div class="role-title">Data Scientist</div>
+                <div class="role-desc">Amazon • Seattle, WA</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: Data Scientist</div>
+            </div>
+
+            <!-- Infosys -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" alt="Infosys"
+                    class="company-logo">
+                <div class="role-title">CQA Engineer</div>
+                <div class="role-desc">Infosys • Bangalore</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: CQA Engineer</div>
+            </div>
+
+            <!-- Microsoft -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg"
+                    alt="Microsoft" class="company-logo">
+                <div class="role-title">Backend Developer</div>
+                <div class="role-desc">Microsoft • Redmond</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: Backend Developer</div>
+            </div>
+
+
+            <!-- Oracle -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle"
+                    class="company-logo" style="max-width: 120px; object-fit: contain;">
+                <div class="role-title">AI Engineer</div>
+                <div class="role-desc">Oracle • Austin, TX</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: AI Engineer</div>
+            </div>
+
+            <!-- Accenture -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" alt="Accenture"
+                    class="company-logo">
+                <div class="role-title">Cyber Security Analyst</div>
+                <div class="role-desc">Accenture • Dublin</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: Cyber Security Analyst</div>
+            </div>
+
+            <!-- IBM -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM"
+                    class="company-logo">
+                <div class="role-title">Cloud Engineer</div>
+                <div class="role-desc">IBM • Remote</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: Cloud Engineer</div>
+            </div>
+
+            <!-- Adobe -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg"
+                    alt="Adobe" class="company-logo">
+                <div class="role-title">Frontend Developer</div>
+                <div class="role-desc">Adobe • San Jose</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: Frontend Developer</div>
+            </div>
+
+            <!-- NVIDIA -->
+            <div class="test-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg" alt="NVIDIA"
+                    class="company-logo">
+                <div class="role-title">Data Scientist</div>
+                <div class="role-desc">NVIDIA • Santa Clara</div>
+                <button class="btn-apply btn-apply-ref">Start Test</button>
+                <div style="display:none;" class="role-title">Role: Data Scientist</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Logic Script -->
+    <script src="candidate.js"></script>
+    <script>
+        // Compatibility Patch: 
+        // The existing candidate.js looks for .btn-apply and uses specific selectors.
+        // It selects: button.closest('.test-card').querySelector('.role-title').innerText.replace('Role: ', '')
+        // We have added a hidden .role-title that contains "Role: ..." to satisfy this exact logic 
+        // while displaying a cleaner UI title separately.
+        // We also need to map our new visual buttons to the old 'btn-apply' class logic. 
+        // I added 'btn-apply' class to the buttons, and 'btn-apply-ref' for CSS specific overrides if needed.
+
+        // Also candidate.js replaces innerText with "Applied" and changes bgColor.
+        // Our CSS needs to support that (inline styles from JS will override CSS class, so that's fine).
+
+        // Search Logic
+        const searchInput = document.getElementById('testSearch');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.test-card');
+
+            cards.forEach(card => {
+                const companyName = card.querySelector('.company-logo').alt.toLowerCase();
+                const roleTitle = card.querySelector('.role-title').innerText.toLowerCase();
+
+                // Check if company name or role matches the search term
+                if (companyName.includes(term) || roleTitle.includes(term)) {
+                    card.style.display = ""; // Reset to CSS default (flex/block)
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

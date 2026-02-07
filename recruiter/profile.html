@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Recruiter Dashboard</title>
+    <!-- Update Path to Styles -->
+    <link rel="stylesheet" href="../styles/recruiter.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <span>💼</span> TalentAI
+        </div>
+        <nav class="nav-links">
+            <!-- Navigation Links pointing back to Dashboard -->
+            <a href="dashboard.html" class="nav-item">
+                Dashboard
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                Create Job / Test
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                Manage Tests
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                Applications
+            </a>
+            <a href="#" class="nav-item logout-btn">
+                Logout
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <section class="view-section active" style="display: block;">
+            <header class="header">
+                <div>
+                    <h1>Recruiter Profile</h1>
+                    <p style="color: var(--text-secondary)">Manage your personal and company details</p>
+                </div>
+
+                <!-- Profile Menu -->
+                <div class="profile-container">
+                    <div class="profile-trigger">
+                        <img id="headerProfileImage" src=""
+                            style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: none;">
+                        <svg id="headerProfileIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" style="color: white">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <!-- Dropdown -->
+                    <div class="profile-dropdown">
+                        <div class="dropdown-item profile-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Profile
+                        </div>
+                        <div class="dropdown-item logout-btn logout">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            Logout
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Profile Content -->
+            <div
+                style="background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); max-width: 800px; margin: 0 auto;">
+
+                <!-- 1. Header & Image -->
+                <div
+                    style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                    <div style="position: relative;">
+                        <!-- Default placeholder or uploaded image -->
+                        <img id="profileImage" src="https://via.placeholder.com/150" alt="Profile"
+                            style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-body);">
+                        <button id="uploadBtn"
+                            style="position: absolute; bottom: 0; right: 0; background: var(--primary); border: none; border-radius: 50%; width: 36px; height: 36px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                </path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </button>
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    </div>
+                    <div>
+                        <h2 id="displayName" style="margin-bottom: 0.5rem; color: var(--text-primary)">Recruiter Name
+                        </h2>
+                        <p id="displayCompany" style="color: var(--text-secondary); font-size: 1.1rem;">Company Name</p>
+                    </div>
+                </div>
+
+                <!-- 2. Details Form -->
+                <form id="profileForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+
+                    <div style="grid-column: 1 / -1;">
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Full
+                            Name</label>
+                        <input type="text" id="fullName" placeholder="Enter full name"
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Official
+                            Email</label>
+                        <input type="email" id="email" placeholder="recruiter@company.com"
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Designation
+                            / Role</label>
+                        <input type="text" id="designation" placeholder="e.g. HR Manager"
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Company
+                            Name</label>
+                        <input type="text" id="companyName" placeholder="Company Ltd."
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Company
+                            Website</label>
+                        <input type="url" id="companyWebsite" placeholder="https://company.com"
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Company
+                            Size</label>
+                        <select id="companySize"
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                            <option value="">Select Size</option>
+                            <option value="1-10">1-10 Employees</option>
+                            <option value="11-50">11-50 Employees</option>
+                            <option value="51-200">51-200 Employees</option>
+                            <option value="200+">200+ Employees</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Industry
+                            / Domain</label>
+                        <input type="text" id="industry" placeholder="e.g. Technology"
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+
+                    <div style="grid-column: 1 / -1;">
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Location</label>
+                        <input type="text" id="location" placeholder="City, Country"
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+
+                    <div style="grid-column: 1 / -1;">
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Short
+                            Company Description</label>
+                        <textarea id="description" rows="4" placeholder="Brief description..."
+                            style="width: 100%; padding: 0.75rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); resize: vertical;"></textarea>
+                    </div>
+
+                    <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end; margin-top: 1rem;">
+                        <button type="submit"
+                            style="background: var(--primary); color: white; padding: 0.8rem 2rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: background 0.2s;">Save
+                            Changes</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Reuse Recruiter Logic for Logout etc, but we'll add inline profile logic -->
+    <script src="recruiter.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileForm = document.getElementById('profileForm');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const imageInput = document.getElementById('imageInput');
+            const profileImage = document.getElementById('profileImage');
+            const headerProfileImage = document.getElementById('headerProfileImage');
+            const headerProfileIcon = document.getElementById('headerProfileIcon');
+            const displayName = document.getElementById('displayName');
+            const displayCompany = document.getElementById('displayCompany');
+
+            const fields = ['fullName', 'email', 'designation', 'companyName', 'companyWebsite', 'companySize', 'industry', 'location', 'description'];
+
+            // Load Data
+            const loadProfile = () => {
+                const savedData = JSON.parse(localStorage.getItem('recruiterProfile')) || {};
+
+                fields.forEach(field => {
+                    if (savedData[field]) {
+                        document.getElementById(field).value = savedData[field];
+                    }
+                });
+
+                if (savedData.fullName) displayName.textContent = savedData.fullName;
+                if (savedData.companyName) displayCompany.textContent = savedData.companyName;
+
+                if (savedData.profileImage) {
+                    profileImage.src = savedData.profileImage;
+                    headerProfileImage.src = savedData.profileImage;
+                    headerProfileImage.style.display = 'block';
+                    headerProfileIcon.style.display = 'none';
+                }
+            };
+            loadProfile();
+
+            // Image Upload
+            uploadBtn.addEventListener('click', () => imageInput.click());
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        profileImage.src = event.target.result;
+                        // Instant preview on header too?
+                        headerProfileImage.src = event.target.result;
+                        headerProfileImage.style.display = 'block';
+                        headerProfileIcon.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Save
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const data = {};
+                fields.forEach(field => {
+                    data[field] = document.getElementById(field).value;
+                });
+                data.profileImage = profileImage.src;
+
+                localStorage.setItem('recruiterProfile', JSON.stringify(data));
+
+                // Update specific display elements
+                if (data.fullName) displayName.textContent = data.fullName;
+                if (data.companyName) displayCompany.textContent = data.companyName;
+
+                alert('Profile saved successfully!');
+            });
+        });
+    </script>
+</body>
+
+</html>
